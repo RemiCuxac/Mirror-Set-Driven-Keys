@@ -53,7 +53,6 @@ class MirrorSDK(QtWidgets.QWidget):
             for obj in sel:
                 for attr in attrs:
                     self.iter_nodes(f"{obj}.{attr}")
-            self.close()
         else:
             cmds.warning("Please select a control and one or more attribute")
 
