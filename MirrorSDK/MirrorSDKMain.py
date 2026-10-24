@@ -8,7 +8,7 @@ except ModuleNotFoundError:
 
 def group_by(main_list: list, size: int = 2) -> list:
     """This function returns a list with nested lists by length of param 'size'."""
-    return [main_list[i:i + size] for i in range(0, len(main_list), size)]
+    return [main_list[i:i + size] for i in range(0, len(main_list), size) if not any(True for item in main_list[i:i+size] if "MayaNodeEditor" in item)]
 
 
 class MirrorSDK(QtWidgets.QWidget):
@@ -47,7 +47,7 @@ class MirrorSDK(QtWidgets.QWidget):
     def mirror(self):
         self.left_side = self.qle_left.text()
         self.right_side = self.qle_right.text()
-        sel = cmds.ls(sl=True)
+        sel = cmds.ls(sl=True, transforms=True)
         attrs = cmds.channelBox("mainChannelBox", q=True, sma=True)
         if sel and attrs:
             for obj in sel:
